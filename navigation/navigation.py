@@ -2,7 +2,7 @@ import math
 from navigation.position_handler import PositionHandler
 from navigation.pid_controller import PIDController
 from navigation.purepursuit import PurePursuit
-from navigation.obstacle_handler import ObstacleHandler  # 수정됨
+from navigation.obstacle.obstacle_handler import ObstacleHandler  # 수정됨
 
 class Navigation:
     def __init__(self):

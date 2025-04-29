@@ -32,7 +32,7 @@ class PositionHandler:
                 if len(SHARED['del_playerPos_x']) > 1000:
                     SHARED['del_playerPos_x'] = SHARED['del_playerPos_x'][-1000:]
                     SHARED['del_playerPos_z'] = SHARED['del_playerPos_z'][-1000:]
-                print(f"Delta position appended: ΔX={dx}, ΔZ={dz}")
+                print(f"Delta position appended: dX={dx}, dZ={dz}")
 
                 distance_moved = math.sqrt(dx**2 + dz**2)
                 if distance_moved > 0.01:
