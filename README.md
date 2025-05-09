@@ -94,8 +94,6 @@ flowchart TD
 │   ├── callbacks.py           # Dash 콜백
 │   ├── layout.py              # Dash UI 레이아웃
 │   └── styles.py              # 스타일 상수 정의(필요 시 사용)
-├── .gitignore                 # Git이 추적하지 않을 파일 지정
-├── requirements.txt           # Python 의존성 목록
 └── main.py                    # 실행 진입점
 ```
 ## 모듈 및 함수 설명
