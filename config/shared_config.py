@@ -46,7 +46,7 @@ SHARED_LOCK = threading.Lock()
 # 서버 설정
 SERVER_CONFIG = {
     'flask_host': '0.0.0.0',
-    'flask_port': 5000,
+    'flask_port': 5030,
     'dash_port': 8050
 }
 

@@ -2,7 +2,7 @@ import math
 from navigation.position_handler import PositionHandler
 from navigation.pid_controller import PIDController
 from navigation.purepursuit import PurePursuit
-from navigation.obstacle.obstacle_handler import ObstacleHandler  # 수정됨
+from navigation.obstacle_handler import ObstacleHandler  # 수정됨
 
 class Navigation:
     def __init__(self):
@@ -42,10 +42,33 @@ class Navigation:
             }
         except Exception as e:
             return {"status": "ERROR", "message": str(e)}
+        
+    def update_info(self, data):
+        """LiDAR 데이터와 플레이어 위치 데이터를 처리."""
+        try:
+            print(f"Received /info data: {data}")
+            if "lidarPoints" not in data:
+                return {"status": "ERROR", "message": "No lidarPoints in data"}
+            
+            # LiDAR 데이터 처리
+            obstacle_result = self.obstacle_handler.update_obstacle({"lidarPoints": data["lidarPoints"]})
+            if obstacle_result["status"] == "ERROR":
+                return obstacle_result
 
-    def update_obstacle(self, obstacle_data):
-        """장애물 데이터 업데이트."""
-        return self.obstacle_handler.update_obstacle(obstacle_data)
+            # # 플레이어 위치 데이터 처리
+            # if "playerPos" in data and isinstance(data["playerPos"], dict):
+            #     position_str = f"{data['playerPos']['x']},{data['playerPos']['y']},{data['playerPos']['z']}"
+            #     position_result = self.position_handler.update_position(position_str)
+            #     if position_result["status"] == "ERROR":
+            #         return position_result
+
+        except Exception as e:
+            print(f"Error in update_info: {str(e)}")
+            return {"status": "ERROR", "message": f"Failed to update info: {str(e)}"}
+
+    # def update_obstacle(self, obstacle_data):
+    #     """장애물 데이터 업데이트."""
+    #     return self.obstacle_handler.update_obstacle(obstacle_data)
 
     def get_move(self):
         """장애물 회피 여부를 먼저 판단하고, Pure Pursuit로 이동 명령 계산."""

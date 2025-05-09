@@ -53,6 +53,11 @@ def set_destination():
 def get_move():
     return jsonify(navigator.get_move())
 
+# @app.route('/get_action', methods=['GET'])
+# def get_action():
+#     """get_move와 동일한 동작을 수행 (호환성 유지)."""
+#     return jsonify(navigator.get_move())
+
 @app.route('/update_obstacle', methods=['POST'])
 def update_obstacle():
     """정적 장애물 데이터를 Navigation 클래스에 반영."""
